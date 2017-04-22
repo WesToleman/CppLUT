@@ -49,27 +49,6 @@ public:
 	// static std::vector<double> & rgbArray; Find a way to do this
 
 	/**
-	 * @brief      Gets the red channel value
-	 *
-	 * @return     The red channel value
-	 */
-	LUTColorValue getRed() const;
-
-	/**
-	 * @brief      Gets the green channel value
-	 *
-	 * @return     The green channel value
-	 */
-	LUTColorValue getGreen() const;
-
-	/**
-	 * @brief      Gets the blue channel value
-	 *
-	 * @return     The blue channel value
-	 */
-	LUTColorValue getBlue() const;
-
-	/**
 	 *  Returns a new color with the given floating-point channel values.
 	 *
 	 *  @param r The value of the red channel of the color. Values should be between 0 and 1

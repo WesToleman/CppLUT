@@ -10,19 +10,6 @@ LUTColor::LUTColor(LUTColorValue r, LUTColorValue g, LUTColorValue b):
                    blue(!std::isfinite(b) ? 0 : b)
 {}
 
-LUTColorValue LUTColor::getRed() const
-{
-	return red;
-}
-LUTColorValue LUTColor::getGreen() const
-{
-	return green;
-}
-LUTColorValue LUTColor::getBlue() const
-{
-	return blue;
-}
-
 LUTColor LUTColor::colorWithRGB(LUTColorValue r, LUTColorValue g, LUTColorValue b)
 {
 	return LUTColor(r, g, b);
