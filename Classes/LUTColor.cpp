@@ -102,29 +102,29 @@ void LUTColor::remapBetweenColors(const LUTColor &  inputLowColor, const LUTColo
 {
 	if (!bounded)
 	{
-		red = LUTHelper::remapNoError(red, inputLowColor.getRed(), inputHighColor.getRed(),
-		                              outputLowColor.getRed(), outputHighColor.getRed());
-		green = LUTHelper::remapNoError(green, inputLowColor.getGreen(), inputHighColor.getGreen(),
-		                                outputLowColor.getGreen(), outputHighColor.getGreen());
-		blue = LUTHelper::remapNoError(blue, inputLowColor.getBlue(), inputHighColor.getBlue(),
-		                               outputLowColor.getBlue(), outputHighColor.getBlue());
+		red = LUTHelper::remapNoError(red, inputLowColor.red, inputHighColor.red,
+		                              outputLowColor.red, outputHighColor.red);
+		green = LUTHelper::remapNoError(green, inputLowColor.green, inputHighColor.green,
+		                                outputLowColor.green, outputHighColor.green);
+		blue = LUTHelper::remapNoError(blue, inputLowColor.blue, inputHighColor.blue,
+		                               outputLowColor.blue, outputHighColor.blue);
 	}
 	else
 	{
-		red = LUTHelper::remap(red, inputLowColor.getRed(), inputHighColor.getRed(),
-		                       outputLowColor.getRed(), outputHighColor.getRed());
-		green = LUTHelper::remap(green, inputLowColor.getGreen(), inputHighColor.getGreen(),
-		                         outputLowColor.getGreen(), outputHighColor.getGreen());
-		blue = LUTHelper::remap(blue, inputLowColor.getBlue(), inputHighColor.getBlue(),
-		                        outputLowColor.getBlue(), outputHighColor.getBlue());
+		red = LUTHelper::remap(red, inputLowColor.red, inputHighColor.red,
+		                       outputLowColor.red, outputHighColor.red);
+		green = LUTHelper::remap(green, inputLowColor.green, inputHighColor.green,
+		                         outputLowColor.green, outputHighColor.green);
+		blue = LUTHelper::remap(blue, inputLowColor.blue, inputHighColor.blue,
+		                        outputLowColor.blue, outputHighColor.blue);
 	}
 }
 
 void LUTColor::lerpTo(const LUTColor & otherColor, double amount)
 {
-	red = LUTHelper::lerp1d(red, otherColor.getRed(), amount);
-	green = LUTHelper::lerp1d(green, otherColor.getGreen(), amount);
-	blue = LUTHelper::lerp1d(blue, otherColor.getBlue(), amount);
+	red = LUTHelper::lerp1d(red, otherColor.red, amount);
+	green = LUTHelper::lerp1d(green, otherColor.green, amount);
+	blue = LUTHelper::lerp1d(blue, otherColor.blue, amount);
 }
 
 //thanks http://en.wikipedia.org/wiki/ASC_CDL
@@ -146,9 +146,9 @@ void LUTColor::applySlopeOffsetPower(double redSlope, double redOffset, double r
 
 double LUTColor::distanceToColor(const LUTColor & otherColor) const
 {
-    return std::sqrt(std::pow(red - otherColor.getRed(), 2)
-                     + std::pow(green - otherColor.getGreen(), 2)
-                     + std::pow(blue - otherColor.getBlue(), 2));
+    return std::sqrt(std::pow(red - otherColor.red, 2)
+                     + std::pow(green - otherColor.green, 2)
+                     + std::pow(blue - otherColor.blue, 2));
 }
 
 double LUTColor::luminanceRec709() const
@@ -178,23 +178,23 @@ void LUTColor::multiplyByNumber(double number)
 
 void LUTColor::multiplyByColor(const LUTColor & offsetColor)
 {
-	red *= offsetColor.getRed();
-	green *= offsetColor.getGreen();
-	blue *= offsetColor.getBlue();
+	red *= offsetColor.red;
+	green *= offsetColor.green;
+	blue *= offsetColor.blue;
 }
 
 void LUTColor::addColor(const LUTColor & offsetColor)
 {
-	red += offsetColor.getRed();
-	green += offsetColor.getGreen();
-	blue += offsetColor.getBlue();
+	red += offsetColor.red;
+	green += offsetColor.green;
+	blue += offsetColor.blue;
 }
 
 void LUTColor::subtractColor(const LUTColor & offsetColor)
 {
-	red -= offsetColor.getRed();
-	green -= offsetColor.getGreen();
-	blue -= offsetColor.getBlue();
+	red -= offsetColor.red;
+	green -= offsetColor.green;
+	blue -= offsetColor.blue;
 }
 
 void LUTColor::invertColorWithMinMax(double minimumValue, double maximumValue)
