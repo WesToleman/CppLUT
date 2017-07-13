@@ -4,6 +4,8 @@
 #include <cmath> //std::isfinite
 #include <algorithm> //std::min std::max
 
+using namespace CppLUT;
+
 LUTColor::LUTColor(LUTColorValue r, LUTColorValue g, LUTColorValue b):
                    red(!std::isfinite(r) ? 0 : r),
                    green(!std::isfinite(g) ? 0 : g),
@@ -161,43 +163,46 @@ double LUTColor::luminanceUsingLuma(double lumaR, double lumaG, double lumaB) co
 	return (red*lumaR + green*lumaB + blue*lumaB);
 }
 
-
-void LUTColor::contrastStretchWithMinMax(double currentMin, double currentMax, double finalMin, double finalMax)
+void LUTColor::contrastStretchWithRange(double currentMin, double currentMax, double finalMin, double finalMax)
 {
 	red = LUTHelper::contrastStretch(red, currentMin, currentMax, finalMin, finalMax);
 	green = LUTHelper::contrastStretch(green, currentMin, currentMax, finalMin, finalMax);
 	blue = LUTHelper::contrastStretch(blue, currentMin, currentMax, finalMin, finalMax);
 }
 
-void LUTColor::multiplyByNumber(double number)
+LUTColor & LUTColor::operator*=(double number)
 {
 	red *= number;
 	green *= number;
 	blue *= number;
+	return *this;
 }
 
-void LUTColor::multiplyByColor(const LUTColor & offsetColor)
+LUTColor & LUTColor::operator*=(const LUTColor & offsetColor)
 {
 	red *= offsetColor.red;
 	green *= offsetColor.green;
 	blue *= offsetColor.blue;
+	return *this;
 }
 
-void LUTColor::addColor(const LUTColor & offsetColor)
+LUTColor & LUTColor::operator+=(const LUTColor & offsetColor)
 {
 	red += offsetColor.red;
 	green += offsetColor.green;
 	blue += offsetColor.blue;
+	return *this;
 }
 
-void LUTColor::subtractColor(const LUTColor & offsetColor)
+LUTColor & LUTColor::operator-=(const LUTColor & offsetColor)
 {
 	red -= offsetColor.red;
 	green -= offsetColor.green;
 	blue -= offsetColor.blue;
+	return *this;
 }
 
-void LUTColor::invertColorWithMinMax(double minimumValue, double maximumValue)
+void LUTColor::invertColorWithRange(double minimumValue, double maximumValue)
 {
 	double distance = std::abs(maximumValue-minimumValue);
 	red = distance - red;
